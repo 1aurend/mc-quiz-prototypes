@@ -1,11 +1,13 @@
 import React from 'react'
 
 
-function Question() {
+function Question(props) {
 
+  console.log(props.question);
+  
   return (
     <>
-      <h2 style={{margin: 'auto'}}>Question Here</h2>
+      <h2 style={{margin: 'auto'}}>{props.question}</h2>
     </>
   )
 
