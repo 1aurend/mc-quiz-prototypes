@@ -15,6 +15,7 @@ function Quiz (props) {
   const [timesLog, addLog] = useState([])
   const [currentQ, nextQ] = useState(props.data[0])
   const [responsesLog, addResponse] = useState([])
+  
 
   useEffect(() => {
     if (answeredCount >= 1 && timesLog.length < answeredCount) {
@@ -24,10 +25,11 @@ function Quiz (props) {
       console.log('math= ' + time)
       addLog([...timesLog, time])
       console.log('reponses so far: ' + responsesLog);
+      console.log(answeredCount);
     }
+  }, [startTime, clickTime, answeredCount, timesLog, responsesLog])
 
-  }, [startTime, clickTime, answeredCount, timesLog])
-
+if (answeredCount < props.data.length) {
   return (
     <div id='pagegrid'>
       <div id='question'>
@@ -45,6 +47,17 @@ function Quiz (props) {
       </div>
     </div>
   )
+}
+else {
+    return (
+    <div id='pagegrid'>
+      <div id='question'>
+        <h2>End of Quiz!</h2>
+      </div>
+    </div>
+  )
+}
+
 
 }
 
