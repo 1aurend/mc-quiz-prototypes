@@ -1,4 +1,5 @@
 import React from 'react'
+import Choice from './Choice.js'
 
 
 function ChoicesBar(props) {
@@ -7,12 +8,9 @@ function ChoicesBar(props) {
 
   return (
     <>
-      <button className='choicebutton' onClick={props.onClick}>{props.choices[0]}</button>
-      <button className='choicebutton'>B</button>
-      <button className='choicebutton'>C</button>
-      <button className='choicebutton'>D</button>
-      <button className='choicebutton'>E</button>
-    </>
+      {props.choices.map(choice => {return (
+        <Choice onClick={props.onClick} choice={choice} onAnswer={props.onAnswer}/>)})}
+    </> //should Button be a component? probably yes eventually
   )
 
 }

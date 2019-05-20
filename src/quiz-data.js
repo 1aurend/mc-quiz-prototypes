@@ -16,7 +16,7 @@ const data = [
   },
   {
     id: 0,
-    question: 'question text or image goes here',
+    question: 'hey-a new question!',
     answers: [
       'A',
     ],
@@ -31,7 +31,7 @@ const data = [
   },
   {
     id: 0,
-    question: 'question text or image goes here',
+    question: 'and another one!',
     answers: [
       'A',
     ],

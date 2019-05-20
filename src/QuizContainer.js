@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import data from './quiz-data.js'
 import Quiz from './Quiz.js'
 
-function loadQuiz(numQs) {
+
+async function loadQuiz(numQs) {
 
   let qs = []
 
@@ -17,21 +18,17 @@ function loadQuiz(numQs) {
 function QuizContainer() {
 
   const [gotData, fetched] = useState(false)
-  const [quizQs, updateQs] = useState([])
+  const [theQs, updateQs] = useState([])
 
 
   useEffect(() => {
     if (!gotData) {
-      const theQs = load().then((qs) => {
+    loadQuiz(3).then((qs) => {
         updateQs(qs)
         fetched(true)
       })
     }
-  }, [gotData, quizQs])
-
-  async function load() {
-    return await loadQuiz(3)
-  }
+  }, [gotData, theQs])
 
 
   if (!gotData) {
@@ -39,7 +36,7 @@ function QuizContainer() {
   }
   else {
     return (
-      <Quiz data={quizQs} />
+      <Quiz data={theQs} />
     )
   }
 
