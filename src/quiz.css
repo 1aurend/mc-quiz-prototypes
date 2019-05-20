@@ -1,0 +1,39 @@
+html, body, #root, #root>div {
+  height: 100%;
+  margin: 0;
+}
+
+#pagegrid {
+  display: grid;
+  grid-template-columns: 200px auto 200px;
+  grid-template-rows: 100px auto 200px 100px;
+  height: 100%;
+  width: 100%;
+}
+
+#question {
+  grid-column: 2;
+  grid-row: 2;
+  border: 5px solid black;
+  margin: 50px;
+}
+
+#question>h2 {
+  margin-top: auto;
+  text-align: center;
+  padding-top: 200px;
+}
+
+#choices {
+  grid-column: 2;
+  grid-row: 3;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  width: inherit;
+  height: inherit;
+}
+
+.choicebutton {
+  border: 5px solid black;
+  border-radius: 5%
+}
