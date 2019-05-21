@@ -3,7 +3,8 @@ const data = [
     id: 0,
     question: 'question text or image goes here',
     answers: [
-      'A',
+      'B',
+      'C',
     ],
     ordered: false,
     choices: [
@@ -18,7 +19,7 @@ const data = [
     id: 0,
     question: 'hey-a new question!',
     answers: [
-      'A',
+      'C',
     ],
     ordered: false,
     choices: [
