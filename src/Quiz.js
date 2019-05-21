@@ -7,43 +7,62 @@ import Results from './Results.js'
 
 function Quiz (props) {
 
-  console.log(props.data);
-
-  const [startTime, setStart] = useState([Date.now()])
-  const [clickTime, setClick] = useState([])
-  const [answeredCount, incrementCount] = useState(0)
-  const [timesLog, addLog] = useState([])
   const [currentQ, nextQ] = useState(props.data[0])
-  const [responsesLog, addResponse] = useState([])
+
+  const startTime = useRef([Date.now()])
+  const clickTime = useRef([])
+  const answeredCount = useRef(0)
+  const timesLog = useRef([])
+  const responsesLog = useRef([])
+  const inputs = useRef([])
   const average = useRef(0)
   const correct = useRef(0)
 
 
-  useEffect(() => {
-    if (answeredCount >= 1 && timesLog.length < answeredCount) {
 
-      let time = (clickTime[(answeredCount-1)]-startTime[(answeredCount-1)])/1000
-      console.log('math= ' + time)
-      addLog([...timesLog, time])
+  function handleClick(choice) {
 
-      console.log('reponses so far: ' + JSON.stringify(responsesLog));
-      if (JSON.stringify(responsesLog[responsesLog.length-1].answer) === JSON.stringify(responsesLog[responsesLog.length-1].input)) {
-        correct.current = correct.current+1
-        console.log('number correct = ' + correct.current);
-      }
-      console.log(answeredCount);
+    let now = Date.now()
+
+    Promise.resolve(inputs.current = [...inputs.current, choice]).then(() => {
+       if (currentQ.answers.length === inputs.current.length) {
+        clickTime.current = [...clickTime.current, now]
+        startTime.current = [...startTime.current, now]
+        answeredCount.current = answeredCount.current+1
+        nextQ(props.data[answeredCount.current])
+        responsesLog.current = [...responsesLog.current, {input: inputs.current, answer: currentQ.answers}]
+      }}).then(() =>
+        { if (currentQ.answers.length === inputs.current.length) {
+        doMath()
+      }}).then(() =>
+        { if (currentQ.answers.length === inputs.current.length) {
+        inputs.current = []
+      }})
+
+  }
+
+  function doMath() {
+
+    let time = (clickTime.current[(clickTime.current.length-1)]-startTime.current[(answeredCount.current-1)])/1000
+    console.log('math= ' + time)
+    timesLog.current = [...timesLog.current, time]
+
+    console.log('reponses so far: ' + JSON.stringify(responsesLog.current));
+    if (JSON.stringify(responsesLog.current[responsesLog.current.length-1].answer) === JSON.stringify(responsesLog.current[responsesLog.current.length-1].input)) {
+      correct.current = correct.current+1
+      console.log('number correct = ' + correct.current);
     }
-  }, [startTime, clickTime, answeredCount, timesLog, responsesLog, correct])
 
-  useEffect(() => {
-    if (answeredCount >= 1 && answeredCount === props.data.length) {
+    if (answeredCount.current === props.data.length) {
       const mean = arr => arr.reduce((a,b) => a + b, 0) / arr.length
-      average.current = mean(timesLog)
+      average.current = mean(timesLog.current)
+      nextQ(null)
     }
-  }, [answeredCount, timesLog, props.data.length])
+
+  }
 
 
-  if (answeredCount < props.data.length) {
+  if (answeredCount.current < props.data.length) {
     return (
       <div id='pagegrid'>
         <div id='question'>
@@ -51,13 +70,7 @@ function Quiz (props) {
         </div>
         <div id='choices'>
           {currentQ.choices.map(choice => {return (
-            <Choice onClick={() => {
-                setClick([...clickTime, Date.now()])
-                setStart([...startTime, Date.now()])
-                incrementCount(answeredCount + 1)
-                nextQ(props.data[answeredCount + 1])
-                addResponse([...responsesLog, {input: [choice], answer: currentQ.answers}])
-              }} choice={choice} key={choice} />)})}
+            <Choice onClick={() => handleClick(choice)} choice={choice} key={choice} />)})}
         </div>
       </div>
     )
