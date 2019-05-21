@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Quiz from './Quiz.js';
+import QuizContainer from './QuizContainer.js';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<Quiz />, document.getElementById('root'));
+ReactDOM.render(<QuizContainer />, document.getElementById('root'));
 
 
 serviceWorker.unregister();
