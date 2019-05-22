@@ -6,7 +6,7 @@ import Go from './Go.js'
 
 function Start() {
 
-  const [numQs, setNum] = useState(null)
+  const [numQs, setNum] = useState(1)
 
   return (
     <div id='pagegrid'>
