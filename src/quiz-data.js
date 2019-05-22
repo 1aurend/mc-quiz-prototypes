@@ -1,55 +1,10 @@
 const data = [
   {
-    id: 0,
-    question: 'question text or image goes here',
-    answers: [
-      'B',
-      'C',
-    ],
-    ordered: false,
-    choices: [
-      'A',
-      'B',
-      'C',
-      'D',
-      'E',
-    ]
-  },
-  {
-    id: 0,
-    question: 'hey-a new question!',
-    answers: [
-      'C',
-    ],
-    ordered: false,
-    choices: [
-      'A',
-      'B',
-      'C',
-      'D',
-      'E',
-    ]
-  },
-  {
-    id: 0,
-    question: 'and another one!',
-    answers: [
-      'A',
-    ],
-    ordered: false,
-    choices: [
-      'A',
-      'B',
-      'C',
-      'D',
-      'E',
-    ]
-  },
-  {
     id: 1,
-    question: 'question text or image goes here',
+    question: 'This question has two answers. Click two choices to proceed.',
     answers: [
-      'A',
+      'B',
+      'C',
     ],
     ordered: false,
     choices: [
@@ -62,10 +17,8 @@ const data = [
   },
   {
     id: 2,
-    question: 'question text or image goes here',
+    question: 'Hey-a new question! This one has only one answer.',
     answers: [
-      'A',
-      'B',
       'C',
     ],
     ordered: false,
@@ -79,6 +32,55 @@ const data = [
   },
   {
     id: 3,
+    question: 'And another with one answer...',
+    answers: [
+      'A',
+    ],
+    ordered: false,
+    choices: [
+      'A',
+      'B',
+      'C',
+      'D',
+      'E',
+    ]
+  },
+  {
+    id: 4,
+    question: 'This question has three answers.',
+    answers: [
+      'A',
+      'B',
+      'C'
+    ],
+    ordered: false,
+    choices: [
+      'A',
+      'B',
+      'C',
+      'D',
+      'E',
+    ]
+  },
+  {
+    id: 5,
+    question: 'So does this one.',
+    answers: [
+      'A',
+      'B',
+      'C',
+    ],
+    ordered: false,
+    choices: [
+      'A',
+      'B',
+      'C',
+      'D',
+      'E',
+    ]
+  },
+  {
+    id: 6,
     question: 'question text or image goes here',
     answers: [
       'A',

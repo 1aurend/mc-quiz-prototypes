@@ -23,6 +23,11 @@ html, body, #root, #root>div {
   text-align: center;
   padding-top: 200px;
 }
+#question>h3 {
+  margin-top: auto;
+  text-align: center;
+  padding-top: 50px;
+}
 
 #choices {
   grid-column: 2;
@@ -43,4 +48,29 @@ html, body, #root, #root>div {
   grid-row: 3;
   margin: auto;
   text-align: center;
+}
+
+#startinputs {
+  grid-column: 2;
+  grid-row: 3;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  width: inherit;
+  height: inherit;
+}
+
+#selector {
+  grid-column: 3;
+  margin: auto;
+}
+
+select {
+  height: 3rem;
+  font-size: 20px;
+}
+
+#go {
+  grid-column: 3;
+  margin: auto;
+  display: block;
 }

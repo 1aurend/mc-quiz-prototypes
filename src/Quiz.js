@@ -3,6 +3,7 @@ import Question from './Question.js'
 import Choice from './Choice.js'
 import './quiz.css'
 import Results from './Results.js'
+import { Link } from 'react-router-dom'
 
 
 function Quiz (props) {
@@ -83,6 +84,7 @@ function Quiz (props) {
         </div>
         <div id='results'>
           <Results average={average.current} correct={correct.current} totalQs={props.data.length}/>
+          <Link to='/'><button>Start Over</button></Link>
         </div>
       </div>
     )

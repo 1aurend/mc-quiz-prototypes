@@ -1,9 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import QuizContainer from './QuizContainer.js';
+import { BrowserRouter } from 'react-router-dom'
+import Routes from './Routes.js';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<QuizContainer />, document.getElementById('root'));
+ReactDOM.render((
+  <BrowserRouter>
+    <Routes />
+  </BrowserRouter>
+), document.getElementById('root'));
 
 
 serviceWorker.unregister();
