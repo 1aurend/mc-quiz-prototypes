@@ -2,8 +2,6 @@ import React from 'react'
 
 
 function Question(props) {
-
-  console.log(props.question);
   
   return (
     <>

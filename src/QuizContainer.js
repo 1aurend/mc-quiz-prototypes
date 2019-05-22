@@ -15,7 +15,7 @@ async function loadQuiz(numQs) {
 } //will eventually be a database fetch
 
 
-function QuizContainer() {
+function QuizContainer(props) {
 
   const [gotData, fetched] = useState(false)
   const [theQs, updateQs] = useState([])
@@ -23,7 +23,7 @@ function QuizContainer() {
 
   useEffect(() => {
     if (!gotData) {
-    loadQuiz(3).then((qs) => {
+    loadQuiz(props.location.state.numQs).then((qs) => {
         updateQs(qs)
         fetched(true)
       })
