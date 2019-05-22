@@ -5,6 +5,8 @@ import gosvg from './go.svg'
 
 function Go(props) {
 
+  console.log(props.num);
+
   return (
     <div id='go'>
       <Link to={{

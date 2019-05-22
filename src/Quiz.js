@@ -8,6 +8,9 @@ import { Link } from 'react-router-dom'
 
 function Quiz (props) {
 
+  console.log(props.data);
+  console.log(props.data.length);
+
   const [currentQ, nextQ] = useState(props.data[0])
 
   const startTime = useRef([Date.now()])
@@ -67,7 +70,7 @@ function Quiz (props) {
     return (
       <div id='pagegrid'>
         <div id='question'>
-          <Question question={currentQ.question} />
+          <Question question={currentQ.questionText} />
         </div>
         <div id='choices'>
           {currentQ.choices.map(choice => {return (

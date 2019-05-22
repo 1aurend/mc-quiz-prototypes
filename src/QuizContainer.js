@@ -3,38 +3,54 @@ import data from './quiz-data.js'
 import Quiz from './Quiz.js'
 
 
-async function loadQuiz(numQs) {
-
-  let qs = []
-
-  for (var i = 0; i < numQs; i++) {
-    qs.push(data[i])
-  }
-
-  return qs
-} //will eventually be a database fetch
 
 
 function QuizContainer(props) {
 
-  const [gotData, fetched] = useState(false)
-  const [theQs, updateQs] = useState([])
+  const [theQs, fetchedQs] = useState(null)
 
 
-  useEffect(() => {
-    if (!gotData) {
-    loadQuiz(props.location.state.numQs).then((qs) => {
-        updateQs(qs)
-        fetched(true)
-      })
-    }
-  }, [gotData, theQs])
+  useEffect( () => {
+      loadQuiz(parseInt(props.location.state.numQs))
+    }, [])
 
 
-  if (!gotData) {
+    function loadQuiz(numQs) {
+
+      var Airtable = require('airtable')
+      var base = new Airtable({apiKey: 'API_KEY'}).base('appNa5eSSYVJ1Pt5H')
+      console.log(numQs);
+      let qs = [];
+
+      base('flashcardQs').select({
+            maxRecords: numQs,
+            view: "Grid view"
+        }).eachPage(function page(records, fetchNextPage) {
+
+            records.forEach(function(record) {
+                qs.push(record.fields)
+                console.log('Retrieved', record.fields);
+            });
+
+            fetchNextPage();
+
+        }, function done(err) {
+            if (err) { console.error(err); return; }
+            else {
+              console.log('here!');
+              console.log(qs);
+              fetchedQs(qs)
+            }
+        })
+
+        }
+
+
+  if (!theQs) {
     return <h2>Loading...</h2>
   }
-  else {
+  else if (theQs) {
+    console.log(theQs);
     return (
       <Quiz data={theQs} />
     )
