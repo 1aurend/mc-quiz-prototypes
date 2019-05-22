@@ -29,7 +29,7 @@ function Quiz (props) {
         clickTime.current = [...clickTime.current, now]
         startTime.current = [...startTime.current, now]
         answeredCount.current = answeredCount.current+1
-        nextQ(props.data[answeredCount.current])
+        nextQ(props.data[answeredCount.current]) //should this be further down the chain?
         responsesLog.current = [...responsesLog.current, {input: inputs.current, answer: currentQ.answers}]
       }}).then(() =>
         { if (currentQ.answers.length === inputs.current.length) {
