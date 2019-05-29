@@ -10,8 +10,9 @@ function Quiz (props) {
 
   console.log(props.data);
   console.log(props.data.length);
+  console.log(props.data[0]);
 
-  const [currentQ, nextQ] = useState(props.data[0])
+  const [currentQ, nextQ] = useState(props.data[0].fields)
 
   const startTime = useRef([Date.now()])
   const clickTime = useRef([])
@@ -33,14 +34,14 @@ function Quiz (props) {
         clickTime.current = [...clickTime.current, now]
         startTime.current = [...startTime.current, now]
         answeredCount.current = answeredCount.current+1
-        nextQ(props.data[answeredCount.current]) //should this be further down the chain?
         responsesLog.current = [...responsesLog.current, {input: inputs.current, answer: currentQ.answers}]
       }}).then(() =>
         { if (currentQ.answers.length === inputs.current.length) {
         doMath()
       }}).then(() =>
-        { if (currentQ.answers.length === inputs.current.length) {
+        { if (currentQ.answers.length === inputs.current.length && answeredCount.current < props.data.length) {
         inputs.current = []
+        nextQ(props.data[answeredCount.current].fields)
       }})
 
   }
