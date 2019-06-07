@@ -4,6 +4,7 @@ import Choice from './Choice.js'
 import './quiz.css'
 import Results from './Results.js'
 import { Link } from 'react-router-dom'
+import Chord from './Chord'
 
 
 function Quiz (props) {
@@ -71,7 +72,7 @@ function Quiz (props) {
     return (
       <div id='pagegrid'>
         <div id='question'>
-          <Question question={currentQ.questionText} />
+          <Chord notes={['c/4', 'e/4', 'g/4']} />
         </div>
         <div id='choices'>
           {currentQ.choices.map(choice => {return (

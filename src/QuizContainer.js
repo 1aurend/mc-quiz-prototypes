@@ -15,7 +15,7 @@ function QuizContainer(props) {
 
     function loadQuiz(numQs) {
 
-      axios.post('http://localhost:3001/', {
+      axios.post('https://www.secretmusiclab.com/tests', {
         num: numQs
       }).then(function (response) {
           console.log(response.data)
