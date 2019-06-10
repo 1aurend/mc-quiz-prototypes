@@ -72,7 +72,7 @@ function Quiz (props) {
     return (
       <div id='pagegrid'>
         <div id='question'>
-          <Chord notes={['c/4', 'e/4', 'g/4']} />
+          <Chord notes={currentQ.notes} octaves={currentQ.octaves} />
         </div>
         <div id='choices'>
           {currentQ.choices.map(choice => {return (

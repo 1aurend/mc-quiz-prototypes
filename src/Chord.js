@@ -7,6 +7,16 @@ function Chord(props) {
   const container = useRef(document.createElement('container'))
   const [loading, done] = useState(true)
 
+console.log(props.octaves);
+  let formattedNotes = []
+  let accidentals = []
+  for (var i = 0; i < props.notes.length; i++) {
+    formattedNotes.push(props.notes[i] + '/' + props.octaves[i])
+    if (props.notes[i].length > 1) {
+      accidentals.push(props.notes[i].slice(1))
+    }
+  }
+
 
   useEffect(() => {
 
@@ -31,7 +41,13 @@ function Chord(props) {
 
     if (props.notes.length > 0) {
 
-      let notes = [new VF.StaveNote({clef: "treble", keys: props.notes, duration: "w", align_center: true})]
+      let notes = [new VF.StaveNote({clef: "treble", keys: formattedNotes, duration: "w", align_center: true})]
+
+      if (accidentals.length > 0) {
+        for (var i = 0; i < accidentals.length; i++) {
+           notes = [notes[0].addAccidental(i, new VF.Accidental(accidentals[i]))]
+        }
+      }
 
       let voice = new VF.Voice({num_beats: 4,  beat_value: 4});
       voice.addTickables(notes);
